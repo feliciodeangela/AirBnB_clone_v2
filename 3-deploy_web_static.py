@@ -43,7 +43,3 @@ def deploy():
     """Deploy in one step"""
     path = do_pack()
     do_deploy(path)
-
-
-if __name__ == "__main__":
-    deploy
