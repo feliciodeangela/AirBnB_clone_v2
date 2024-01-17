@@ -22,5 +22,5 @@ def do_deploy(archive_path):
         run('rm -fr {0}/{1}/web_static'.format(main_dir, arch))
         run('ln -fs {0}/{1}/ /data/web_static/current'.format(main_dir, arch))
         return True
-    except:
+    except Exception:
         return False

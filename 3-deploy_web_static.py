@@ -6,6 +6,7 @@ from fabric.api import run, put, env
 from os.path import isfile
 env.hosts = ['100.25.180.71', '100.24.205.214']
 
+
 def do_pack():
     """Function to create the compressed file"""
     local("mkdir -p versions")
@@ -38,8 +39,8 @@ def do_deploy(archive_path):
 
 def deploy():
     """Deploy in one step"""
-    do_pack
-    do_deploy
+    path = do_pack()
+    do_deploy(path)
 
 
 if __name__ == "__main__":
