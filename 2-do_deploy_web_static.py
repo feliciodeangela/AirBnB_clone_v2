@@ -1,4 +1,4 @@
-#!/usr/binpython3
+#!/usr/bin/python3
 """Module to distribute compressed content to web servers"""
 from fabric.api import run, put, env
 from os.path import isfile
