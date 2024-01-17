@@ -14,14 +14,13 @@ def do_deploy(archive_path):
     try:
         put(archive_path, '/tmp/')
         arch = archive_path.split('/')[1].split('.')[0]
-        run('mkdir -p /data/web_static/releases/{}'.format(arch))
-        run('tar -xzf /tmp/{}.tgz -C /data/web_static/releases/'.format(arch))
+        main_dir = '/data/web_static/releases'
+        run('mkdir -p {0}/{1}/'.format(main_dir, arch))
+        run('tar -xzf /tmp/{1}.tgz -C {0}/{1}/'.format(main_dir, arch))
         run('rm -f /tmp/{}.tgz /data/web_static/current'.format(arch))
-        run('mv /data/web_static/releases/{}/web_static/*'
-            ' /data/web_static/releases/{}/'.format(arch))
-        run('rm -fr /data/web_static/releases/{}/web_static'.format(arch))
-        run('ln -fs /data/web_static/{}/'
-            ' /data/web_static/current'.format(arch))
+        run('mv {0}/{1}/web_static/* {0}/{1}/'.format(main_dir, arch))
+        run('rm -fr {0}/{1}/web_static'.format(main_dir, arch))
+        run('ln -fs {0}/{1}/ /data/web_static/current'.format(main_dir, arch))
         return True
     except:
         return False
